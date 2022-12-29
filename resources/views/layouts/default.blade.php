@@ -4,12 +4,14 @@
     @include('includes.head')
   </head>
   <div>
-    <body>
+    <body class="flex flex-col h-screen">
         <header>
           @include('includes.header')
         </header>
-        @yield('content')
-        <footer>
+        <div class="flex-grow">
+          @yield('content')
+        </div>
+        <footer class="sticky top-[100vh]">
             <div>
                 @include('includes.footer')
             </div>
