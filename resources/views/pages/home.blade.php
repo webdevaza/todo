@@ -10,31 +10,22 @@
             class="w-full px-2 py-3 border rounded outline-none border-grey-600" />
         </div>
         <ul class="list-reset">
-        <li class="relative flex items-center justify-between px-2 py-6 border-b">
-            <div>
-            <input type="checkbox" class="" />
-            <p class="inline-block mt-1 text-gray-600">Tailwind CSS To DO App List 1</p>
-            </div>
-            <button type="button" class="absolute right-0 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-700" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            </button>
-        </li>
-        <li class="relative flex items-center justify-between px-2 py-6 border-b">
-            <div>
-            <input type="checkbox" class="" />
-            <p class="inline-block mt-1 text-gray-600">Tailwind CSS To DO App List 2</p>
-            </div>
-            <button type="button" class="absolute right-0 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-700" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            </button>
-        </li>
+            @foreach ($todos as $todo)
+                <li class="relative flex items-center justify-between px-2 py-6 border-b">
+                    <div>
+                    <input type="checkbox" class="" />
+                    <p class="inline-block mt-1 text-gray-600">{{$todo->to_do}}</p>
+                    </div>
+                    <button type="button" class="absolute right-0 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-700" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    </button>
+                </li>
+            @endforeach
         </ul>
+        {{ $todos->onEachSide(5)->links() }}
     </div>
 </div>
 @endsection
