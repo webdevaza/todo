@@ -12,6 +12,7 @@ class AgendaController extends Controller
         return view('bootstrap.pages.home', ['todos'=>$todos]);
     }
 
+
     public function destroy ($id) {
         $itemToDelete = Agenda::find($id);
         $itemToDelete->delete();
