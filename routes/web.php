@@ -26,4 +26,4 @@ Route::get('/p', function () {
     return view('pages.home');
 });
 
-Route::resource('/', AgendaController::class);
+Route::resource('home', AgendaController::class);
