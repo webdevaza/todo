@@ -3,15 +3,17 @@
   <head>
     @include('includes.head')
   </head>
-  <div>
-    <body class="flex flex-col h-screen">
-        <header>
+  <div class="flex flex-col h-screen justify-between">
+    <body>
+        <header class="mb-auto mt-auto">
           @include('includes.header')
         </header>
-        <div class="flex-grow">
-          @yield('content')
-        </div>
-        <footer class="sticky top-[100vh]">
+        <main class="mt-auto mb-auto">
+          <div>
+            @yield('content')
+          </div>
+        </main>
+        <footer class="mt-auto mb-auto">
             <div>
                 @include('includes.footer')
             </div>

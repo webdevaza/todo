@@ -8,7 +8,7 @@ use App\Models\Agenda;
 class AgendaController extends Controller
 {
     public function index() {
-        $todos = Agenda::latest()->paginate(15);
-        return view('pages.home', ['todos'=>$todos]);
+        $todos = Agenda::latest()->orderBy('done', 'ASC')->paginate(10);
+        return view('bootstrap.pages.home', ['todos'=>$todos]);
     }
 }
