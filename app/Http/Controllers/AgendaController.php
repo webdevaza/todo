@@ -12,10 +12,18 @@ class AgendaController extends Controller
         return view('bootstrap.pages.home', ['todos'=>$todos]);
     }
 
+    public function store(Request $request) {
+        $request->validate(['todo'=>'required']);
+        $todo = new Agenda();
+        $todo->to_do = $request->todo;
+        $todo->save();
+        return redirect('home');
+    }
+
     public function destroy ($id) {
         $itemToDelete = Agenda::find($id);
         $itemToDelete->delete();
-        
+
         return redirect('home');
     }
 }

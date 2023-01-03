@@ -11,6 +11,5 @@ class Agenda extends Model
 
     protected $fillable = [
         'to_do',
-        'done',
     ];
 }

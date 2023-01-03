@@ -19,10 +19,10 @@
       
                   <h6 class="mb-3"><a href="/home" class="text-decoration-none">STUFF TO DO</a></h6>
                   
-                  <form class="d-flex justify-content-center align-items-center mb-4">
+                  <form action="{{route('home.store')}}" class="d-flex justify-content-center align-items-center mb-4" method="POST">
                     @csrf
                     <div class="form-outline flex-fill">
-                      <input type="text" id="form3" class="form-control form-control-lg" />
+                      <input type="text" id="form3" class="form-control form-control-lg" name="todo"/>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg ms-2">Add</button>
                   </form>
