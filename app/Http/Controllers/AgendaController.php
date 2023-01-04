@@ -8,6 +8,7 @@ use App\Models\Agenda;
 class AgendaController extends Controller
 {
     public function index() {
+
         // $todos = Agenda::latest()->paginate(8);
         // return view('bootstrap.pages.home', ['todos'=>$todos]);
 
@@ -28,9 +29,11 @@ class AgendaController extends Controller
     }
     
 
+
     public function destroy ($id) {
         $itemToDelete = Agenda::find($id);
         $itemToDelete->delete();
+
 
         return redirect('home');
     }
@@ -45,4 +48,5 @@ class AgendaController extends Controller
         return back();
     }
     
+
 }
