@@ -9,7 +9,9 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <section class="vh-200" style="background-color: #57bb7d;">
+
+    <section class="vh" style="background-color: #57bb7d;">
+
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -19,12 +21,12 @@
       
 
                   <h6 class="mb-3"><a href="/home" class="text-decoration-none">STUFF TO DO</a></h6>
-
                   
-                  <form class="d-flex justify-content-center align-items-center mb-4">
+                  <form action="{{route('home.store')}}" class="d-flex justify-content-center align-items-center mb-4" method="POST">
                     @csrf
                     <div class="form-outline flex-fill">
-                      <input type="text" id="form3" class="form-control form-control-lg" />
+                      <input type="text" id="form3" class="form-control form-control-lg" name="todo"/>
+
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg ms-2">Add</button>
                   </form>
@@ -34,13 +36,18 @@
                         <li
                             class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                             <div class="d-flex align-items-center">
-                                @if ($todo->done == 1)
-                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked/>
-                                    <s>{{$todo->to_do}}</s>    
-                                @else
-                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."/>
-                                    {{$todo->to_do}}
-                                @endif
+
+                                <form action="{{route('home.update',$todo->id)}}" method="POST">
+                                  @csrf
+                                  {{method_field('PUT')}}
+                                    @if ($todo->done == 1)
+                                        <input class="form-check-input me-2" type="checkbox" name="input_check" aria-label="..." checked onchange="this.closest('form').submit();return false;"/>
+                                        <s>{{$todo->to_do}}</s>    
+                                    @else
+                                        <input class="form-check-input me-2" type="checkbox" name="input_check" aria-label="..." onchange="this.closest('form').submit();return false;"/>
+                                        {{$todo->to_do}}
+                                    @endif
+                                </form>
                             
                             </div>
 
@@ -58,7 +65,9 @@
                     @endforeach
                   </ul>
                     <div class="d-flex m-2">
-                        {!!$todos->links('pagination::bootstrap-4')!!}
+
+                        {{-- {!!$todos->links('pagination::bootstrap-4')!!} --}}
+
                     </div>
                 </div>
               </div>
