@@ -9,7 +9,7 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <section class="vh-200" style="background-color: #57bb7d;">
+    <section class="vh" style="background-color: #57bb7d;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -58,7 +58,7 @@
                     @endforeach
                   </ul>
                     <div class="d-flex m-2">
-                        {!!$todos->links('pagination::bootstrap-4')!!}
+                        {{-- {!!$todos->links('pagination::bootstrap-4')!!} --}}
                     </div>
                 </div>
               </div>

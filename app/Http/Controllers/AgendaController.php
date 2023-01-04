@@ -8,8 +8,16 @@ use App\Models\Agenda;
 class AgendaController extends Controller
 {
     public function index() {
-        $todos = Agenda::latest()->paginate(10);
-        return view('bootstrap.pages.home', ['todos'=>$todos]);
+        // $todos = Agenda::latest()->paginate(8);
+        // return view('bootstrap.pages.home', ['todos'=>$todos]);
+
+        $todos = Agenda::where('done',0)->orderBy('updated_at','desc')->get();
+        $dones = Agenda::where('done',1)->orderBy('updated_at','desc')->get();
+        $merged = $todos->merge($dones);
+        
+        
+        
+        return view('bootstrap.pages.home', ['todos'=>$merged]);
     }
 
     public function store(Request $request, Agenda $task) {
@@ -33,7 +41,8 @@ class AgendaController extends Controller
         $itemToUpdate->done = $request->input_check == "on" ? 1 : 0;
         
         $itemToUpdate->save();
-        return redirect('home');
+        // return redirect('home');
+        return back();
     }
     
 }
