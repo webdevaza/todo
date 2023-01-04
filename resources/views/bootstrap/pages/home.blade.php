@@ -17,12 +17,14 @@
               <div class="card" style="border-radius: 15px;">
                 <div class="card-body p-5">
       
+
                   <h6 class="mb-3"><a href="/home" class="text-decoration-none">STUFF TO DO</a></h6>
                   
                   <form action="{{route('home.store')}}" class="d-flex justify-content-center align-items-center mb-4" method="POST">
                     @csrf
                     <div class="form-outline flex-fill">
                       <input type="text" id="form3" class="form-control form-control-lg" name="todo"/>
+
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg ms-2">Add</button>
                   </form>
@@ -32,6 +34,7 @@
                         <li
                             class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <form action="{{route('home.update',$todo->id)}}" method="POST">
                                   @csrf
                                   {{method_field('PUT')}}
@@ -45,6 +48,7 @@
                                 </form>
                             
                             </div>
+
                             <form action="{{route('home.destroy',$todo->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -54,6 +58,7 @@
                                     </svg>
                                 </a>
                             </form>
+
                         </li>
                     @endforeach
                   </ul>
