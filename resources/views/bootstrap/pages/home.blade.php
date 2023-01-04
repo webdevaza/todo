@@ -32,13 +32,17 @@
                         <li
                             class="list-group-item d-flex d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                             <div class="d-flex align-items-center">
-                                @if ($todo->done == 1)
-                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked/>
-                                    <s>{{$todo->to_do}}</s>    
-                                @else
-                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."/>
-                                    {{$todo->to_do}}
-                                @endif
+                                <form action="{{route('home.update',$todo->id)}}" method="POST">
+                                  @csrf
+                                  {{method_field('PUT')}}
+                                    @if ($todo->done == 1)
+                                        <input class="form-check-input me-2" type="checkbox" name="input_check" aria-label="..." checked onchange="this.closest('form').submit();return false;"/>
+                                        <s>{{$todo->to_do}}</s>    
+                                    @else
+                                        <input class="form-check-input me-2" type="checkbox" name="input_check" aria-label="..." onchange="this.closest('form').submit();return false;"/>
+                                        {{$todo->to_do}}
+                                    @endif
+                                </form>
                             
                             </div>
                             <form action="{{route('home.destroy',$todo->id)}}" method="POST">

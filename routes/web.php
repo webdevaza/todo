@@ -26,4 +26,5 @@ Route::get('/p', function () {
     return view('pages.home');
 });
 
-Route::resource('home', AgendaController::class);
+Route::resource('home', AgendaController::class, [
+    'only' => ['index', 'update', 'store', 'destroy']]);

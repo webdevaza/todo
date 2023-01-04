@@ -8,17 +8,17 @@ use App\Models\Agenda;
 class AgendaController extends Controller
 {
     public function index() {
-        $todos = Agenda::latest()->orderBy('done', 'ASC')->paginate(10);
+        $todos = Agenda::latest()->paginate(10);
         return view('bootstrap.pages.home', ['todos'=>$todos]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request, Agenda $task) {
         $request->validate(['todo'=>'required']);
-        $todo = new Agenda();
-        $todo->to_do = $request->todo;
-        $todo->save();
+        $task->to_do = $request->todo;
+        $task->save();
         return redirect('home');
     }
+    
 
     public function destroy ($id) {
         $itemToDelete = Agenda::find($id);
@@ -26,4 +26,14 @@ class AgendaController extends Controller
 
         return redirect('home');
     }
+
+    public function update(Request $request, $id) {
+        
+        $itemToUpdate = Agenda::find($id);
+        $itemToUpdate->done = $request->input_check == "on" ? 1 : 0;
+        
+        $itemToUpdate->save();
+        return redirect('home');
+    }
+    
 }
