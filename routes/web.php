@@ -28,4 +28,4 @@ Route::get('/p', function () {
 
 Route::resource('home', AgendaController::class, [
     'only' => ['index', 'update', 'store', 'destroy']]);
-
+    
