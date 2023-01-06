@@ -27,7 +27,6 @@ class AgendaController extends Controller
         return redirect('home');
     }
     
-
     public function destroy ($id) {
         $itemToDelete = Agenda::find($id);
         $itemToDelete->delete();
@@ -44,5 +43,4 @@ class AgendaController extends Controller
         // return redirect('home');
         return back();
     }
-    
 }

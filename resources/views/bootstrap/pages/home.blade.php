@@ -8,7 +8,7 @@
       
               <div class="card" style="border-radius: 15px;">
                 <div class="card-body p-5">
-      
+                
                   <h6 class="mb-3"><a href="/home" class="text-decoration-none">STUFF TO DO</a></h6>
                   
                   <form action="{{route('home.store')}}" class="d-flex justify-content-center align-items-center mb-4" method="POST">
