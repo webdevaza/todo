@@ -32,11 +32,13 @@
                 <a href="#" class="w3-bar-item w3-button w3-padding-large">Other features</a>
             </div>
         </div>
+
         
         <!-- Header -->
         <header class="w3-container w3-green w3-center" style="padding:128px 16px">
             <h1 class="w3-margin w3-jumbo">PLAN WHAT TO DO,<br> DO WHAT YOU PLAN!</h1>
             <h4>{{$quote}}</h4>
+
             <button class="w3-button w3-white w3-padding-large w3-large w3-margin-top">Get Started</button>
         </header>
 
