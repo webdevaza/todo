@@ -13,12 +13,29 @@ class AgendaController extends Controller
 
         $todos = Agenda::where('done',0)->orderBy('updated_at','desc')->get();
         $dones = Agenda::where('done',1)->orderBy('updated_at','desc')->get();
-        $merged = $todos->merge($dones);
-        
-        
-        
 
+        $merged = $todos->merge($dones);  
+               
         return view('bootstrap.pages.tasks', ['todos'=>$merged]);
+    }
+
+    public function completed() {
+        // $todos = Agenda::latest()->paginate(8);
+        // return view('bootstrap.pages.tasks', ['todos'=>$todos]);
+
+        $dones = Agenda::where('done',1)->orderBy('updated_at','desc')->get();
+        
+        return view('bootstrap.pages.tasks', ['todos'=>$dones]);
+    }
+
+    public function toComplete() {
+        // $todos = Agenda::latest()->paginate(8);
+        // return view('bootstrap.pages.tasks', ['todos'=>$todos]);
+
+        $todos = Agenda::where('done',0)->orderBy('updated_at','desc')->get();
+        
+        return view('bootstrap.pages.tasks', ['todos'=>$todos]);
+
     }
 
     public function store(Request $request, Agenda $task) {
@@ -26,15 +43,17 @@ class AgendaController extends Controller
         $task->to_do = $request->todo;
         $task->save();
 
-        return redirect('tasks');
+        return redirect('tasks')->with('success','Task stored!');
     }
     
+
+
     public function destroy ($id) {
         $itemToDelete = Agenda::find($id);
         $itemToDelete->delete();
 
 
-        return redirect('tasks');
+        return redirect('tasks')->with('success','Task removed!');
 
     }
 
@@ -46,7 +65,11 @@ class AgendaController extends Controller
         $itemToUpdate->save();
 
         // return redirect('tasks');
-        return back();
+        if($itemToUpdate->done == 1) {
+            return back()->with('success','Task completed!');
+        } else {
+            return back()->with('success','Task incomplete again!');
+        }
     }
     
 

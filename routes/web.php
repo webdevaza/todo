@@ -24,9 +24,19 @@ Route::get('/welcome', function () {
 
 
 Route::get('/', function () {
-    return view('bootstrap.home');
+    $quotesJson = file_get_contents("https://zenquotes.io/api/quotes");
+        $quotes = json_decode($quotesJson, true);
+        $random = $quotes[array_rand($quotes,1)];
+        $quote = $random["q"]." (".$random["a"].")";
+    return view('bootstrap.home',['quote'=> $quote]);
+
 });
 
 Route::resource('tasks', AgendaController::class, [
     'only' => ['index', 'update', 'store', 'destroy']]);
+
+
+Route::get('tasks/completed', [AgendaController::class, 'completed'])->name('tasks.completed');
+
+Route::get('tasks/tocomplete', [AgendaController::class, 'toComplete'])->name('tasks.toComplete');
 
