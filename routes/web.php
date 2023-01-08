@@ -22,9 +22,11 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
 Route::get('/', function () {
     return view('bootstrap.home');
 });
 
 Route::resource('tasks', AgendaController::class, [
     'only' => ['index', 'update', 'store', 'destroy']]);
+

@@ -17,6 +17,7 @@ class AgendaController extends Controller
         
         
         
+
         return view('bootstrap.pages.tasks', ['todos'=>$merged]);
     }
 
@@ -24,15 +25,17 @@ class AgendaController extends Controller
         $request->validate(['todo'=>'required']);
         $task->to_do = $request->todo;
         $task->save();
+
         return redirect('tasks');
     }
     
-
     public function destroy ($id) {
         $itemToDelete = Agenda::find($id);
         $itemToDelete->delete();
 
+
         return redirect('tasks');
+
     }
 
     public function update(Request $request, $id) {
@@ -41,8 +44,10 @@ class AgendaController extends Controller
         $itemToUpdate->done = $request->input_check == "on" ? 1 : 0;
         
         $itemToUpdate->save();
+
         // return redirect('tasks');
         return back();
     }
     
+
 }
