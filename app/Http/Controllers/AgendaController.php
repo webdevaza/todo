@@ -40,7 +40,7 @@ class AgendaController extends Controller
         $request->validate(['todo'=>'required']);
         $task->to_do = $request->todo;
         $task->save();
-        return redirect('tasks')->with('success','Task stored!');
+        return redirect('tasks')->with('success','Task added!');
     }
     
 

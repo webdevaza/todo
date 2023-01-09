@@ -1,6 +1,6 @@
 @extends('bootstrap.layouts.default')
 @section('content')
-    <section class="vh" style="background-color: #68c9cc;">
+    <section class="vh-1000" style="background-color: #5daff3;">
         @include('bootstrap.includes.header')
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -17,7 +17,7 @@
                   <form action="{{route('tasks.store')}}" class="d-flex justify-content-center align-items-center mb-4" method="POST">
                     @csrf
                     <div class="form-outline flex-fill">
-                      <input type="text" id="form3" class="form-control form-control-lg" name="todo"/>
+                      <input type="text" id="form3" class="form-control form-control-lg" name="todo" autocomplete="off"/>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg ms-2">Add</button>
                   </form>
