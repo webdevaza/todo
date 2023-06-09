@@ -69,8 +69,8 @@
                             </div>
                             
 
-
-                            <form action="{{route('tasks.destroy',$todo->id)}}" method="POST">
+                            {{-- usual destroy --}}
+                            {{-- <form action="{{route('tasks.destroy',$todo->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <a href="" data-mdb-toggle="tooltip" title="Remove item" onclick="this.closest('form').submit();return false;">
@@ -78,8 +78,16 @@
                                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
                                 </a>
-                            </form>
+                            </form> --}}
 
+                            {{-- ajax destroy --}}
+                            {{-- <form action="{{url('/del/{{{$todo->id}}}')}}" method="POST" id="delete">
+                                @csrf
+                                <input type="submit" value="x"/>                                
+                            </form> --}}
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+                            <button class="delete" data-id="{{ $todo->id }}" >x</button>
 
                             
                           </li>
@@ -97,5 +105,33 @@
             </div>
           </div>
         </div>
+        <script type="text/javascript">
+          // ajax
+
+          $(document).ready(function() {
+
+            $('.delete').on('click', function() {
+              
+              let id = $(this).data("id");
+              let token = $("meta[name='csrf-token']").attr("content");
+              let elem = this
+              
+              $.ajax(
+              {
+                  url: "del/"+id,
+                  type: 'DELETE',
+                  data: {
+                      "id": id,
+                      "_token": token,
+                  },
+                  success: function (result){
+                    $(elem).closest('li').remove();
+                    console.log(result.success);
+                  }
+              });
+            })
+          })
+
+        </script>
     </section>
 @endsection

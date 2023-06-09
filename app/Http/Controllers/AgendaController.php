@@ -40,6 +40,15 @@ class AgendaController extends Controller
 
     }
 
+    public function ajaxDestroy($id)
+    {
+        Agenda::find($id)->delete($id);
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+    }
+
     public function store(Request $request, Agenda $task) {
         $request->validate(['todo'=>'required']);
         $task->to_do = $request->todo;

@@ -42,6 +42,8 @@ Route::get('/', function () {
 
 });
 
+Route::delete('/del/{id}', [AgendaController::class, 'ajaxDestroy']);
+
 Route::resource('tasks', AgendaController::class, [
     'only' => ['index', 'update', 'store', 'destroy']]);
 
